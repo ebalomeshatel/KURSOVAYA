@@ -74,7 +74,7 @@ namespace WindowsFormsApp1
 
         private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          
+
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -91,7 +91,7 @@ namespace WindowsFormsApp1
         {
 
         }
-//ВСТАВКААААААААА
+        //ВСТАВКААААААААА
         private async void button1_Click_1(object sender, EventArgs e)
         {
             if (label13.Visible)
@@ -211,38 +211,38 @@ namespace WindowsFormsApp1
         {
 
         }
-//ИЗМЕНЕНИЕЕЕЕЕЕЕЕЕЕЕЕЕ!!!!! ! ! ! ! ! ! ! ! ! ! ! ! ! !! !
+        //ИЗМЕНЕНИЕЕЕЕЕЕЕЕЕЕЕЕЕ!!!!! ! ! ! ! ! ! ! ! ! ! ! ! ! !! !
         private async void button2_Click(object sender, EventArgs e)
         {
 
             if (label14.Visible)
                 label14.Visible = false;
-            
-                if (
-                !string.IsNullOrEmpty(textBox12.Text) && !string.IsNullOrWhiteSpace(textBox12.Text) &&
-                !string.IsNullOrEmpty(textBox11.Text) && !string.IsNullOrWhiteSpace(textBox11.Text) &&
-                !string.IsNullOrEmpty(textBox10.Text) && !string.IsNullOrWhiteSpace(textBox10.Text) &&
-                !string.IsNullOrEmpty(textBox9.Text) && !string.IsNullOrWhiteSpace(textBox9.Text) &&
-                !string.IsNullOrEmpty(textBox8.Text) && !string.IsNullOrWhiteSpace(textBox8.Text) &&
-                !string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrWhiteSpace(textBox1.Text))
+
+            if (
+            !string.IsNullOrEmpty(textBox12.Text) && !string.IsNullOrWhiteSpace(textBox12.Text) &&
+            !string.IsNullOrEmpty(textBox11.Text) && !string.IsNullOrWhiteSpace(textBox11.Text) &&
+            !string.IsNullOrEmpty(textBox10.Text) && !string.IsNullOrWhiteSpace(textBox10.Text) &&
+            !string.IsNullOrEmpty(textBox9.Text) && !string.IsNullOrWhiteSpace(textBox9.Text) &&
+            !string.IsNullOrEmpty(textBox8.Text) && !string.IsNullOrWhiteSpace(textBox8.Text) &&
+            !string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrWhiteSpace(textBox1.Text))
 
 
             {
-                    SqlCommand command = new SqlCommand("UPDATE [FilmTable] SET [Name]=@Name, [Producer]=@Producer, [Year]=@Year, [Actor]=@Actor, [Rate]=@Rate, [People]=@Actor) WHERE [Id]=@Id", sqlConnection);
+                SqlCommand command = new SqlCommand("UPDATE [FilmTable] SET [Name]=@Name, [Producer]=@Producer, [Year]=@Year, [Actor]=@Actor, [Rate]=@Rate, [People]=@Actor) WHERE [Id]=@Id", sqlConnection);
 
-                    command.Parameters.AddWithValue("Name", textBox12.Text);
-                    command.Parameters.AddWithValue("Producer", textBox11.Text);
-                    command.Parameters.AddWithValue("Year", textBox10.Text);
-                    command.Parameters.AddWithValue("Actor", textBox9.Text);
-                    command.Parameters.AddWithValue("Rate", textBox8.Text);
-                    command.Parameters.AddWithValue("People", textBox1.Text);
+                command.Parameters.AddWithValue("Name", textBox12.Text);
+                command.Parameters.AddWithValue("Producer", textBox11.Text);
+                command.Parameters.AddWithValue("Year", textBox10.Text);
+                command.Parameters.AddWithValue("Actor", textBox9.Text);
+                command.Parameters.AddWithValue("Rate", textBox8.Text);
+                command.Parameters.AddWithValue("People", textBox1.Text);
 
-                    await command.ExecuteNonQueryAsync();
-                }
+                await command.ExecuteNonQueryAsync();
+            }
 
 
-      
-             else if (string.IsNullOrEmpty(textBox12.Text) || string.IsNullOrWhiteSpace(textBox12.Text))
+
+            else if (string.IsNullOrEmpty(textBox12.Text) || string.IsNullOrWhiteSpace(textBox12.Text))
             {
                 label26.Visible = true;
                 label26.Text = "Поле (Фамилия) не заполненно";
@@ -272,9 +272,9 @@ namespace WindowsFormsApp1
                 label31.Visible = true;
                 label31.Text = "Поле (Кол-во зрителей) не заполненно";
             }
-        } 
-            
-        
+        }
+
+
 
 
 
@@ -353,7 +353,7 @@ namespace WindowsFormsApp1
         {
 
         }
-// А ЭТО УДАЛЕНИЕ, НО ПО КОЛ-ВУ ЗРИТЕЛЕЙ, МОЖНО КОНЕЧНО И ПО ID, Я В КУРСЕ КАК ЭТО СДЕЛАТЬ, НО ДУМАЮ ТАК БУДЕТ ПОЛУЧШЕ
+        // А ЭТО УДАЛЕНИЕ
         private async void button3_Click(object sender, EventArgs e)
         {
 
@@ -365,9 +365,9 @@ namespace WindowsFormsApp1
 
 
             {
-                SqlCommand command = new SqlCommand("DELETE FROM [FilmTable] WHERE [People]=@People", sqlConnection);
+                SqlCommand command = new SqlCommand("DELETE FROM [FilmTable] WHERE [name]=@name", sqlConnection);
 
-                command.Parameters.AddWithValue("People", textBox15.Text);
+                command.Parameters.AddWithValue("name", textBox15.Text);
 
                 await command.ExecuteNonQueryAsync();
             }
@@ -471,7 +471,7 @@ namespace WindowsFormsApp1
             {
                 sqlReader = await command.ExecuteReaderAsync();
 
-                while (await sqlReader.ReadAsync ())
+                while (await sqlReader.ReadAsync())
                 {
                     listBox1.Items.Add(Convert.ToString(sqlReader["name"]) + " " + Convert.ToString(sqlReader["producer"]) + "       " + Convert.ToString(sqlReader["year"]) + "        " + Convert.ToString(sqlReader["actor"]) + " " + Convert.ToString(sqlReader["rate"]) + "      " + Convert.ToString(sqlReader["people"]));
                 }
@@ -479,14 +479,14 @@ namespace WindowsFormsApp1
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
+
             }
-                 finally
-                 {
+            finally
+            {
                 if (sqlReader != null)
                     sqlReader.Close();
 
-                 }
+            }
         }
 
         private async void ОбновитьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -554,6 +554,73 @@ namespace WindowsFormsApp1
 
         private void Label24_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private async void Button4_Click(object sender, EventArgs e)
+        {
+            if (label16.Visible)
+                label16.Visible = false;
+            if (!string.IsNullOrEmpty(textBox13.Text) && !string.IsNullOrWhiteSpace(textBox13.Text) &&
+          !string.IsNullOrEmpty(textBox14.Text) && !string.IsNullOrWhiteSpace(textBox14.Text))
+            {
+                SqlCommand command = new SqlCommand("UPDATE [FilmTable] SET [rate]=@rate  WHERE[name]=@name", sqlConnection);
+                command.Parameters.AddWithValue("name", textBox13.Text);
+                command.Parameters.AddWithValue("rate", textBox14.Text);
+                await command.ExecuteNonQueryAsync();
+            }
+            else if (string.IsNullOrEmpty(textBox13.Text) || string.IsNullOrWhiteSpace(textBox13.Text))
+            {
+                label23.Visible = true;
+                label23.Text = "Поле (название) не заполненно";
+            }
+            else if (string.IsNullOrEmpty(textBox14.Text) || string.IsNullOrWhiteSpace(textBox14.Text))
+            {
+                label23.Visible = true;
+                label23.Text = "Поле (Рейтинг) не заполненно";
+            }
+        }
+
+        private async void Button5_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            if (label16.Visible)
+                label16.Visible = false;
+            if (!string.IsNullOrEmpty(textBox13.Text) && !string.IsNullOrWhiteSpace(textBox13.Text))
+            {   SqlDataReader sqlReader = null;
+                SqlCommand command = new SqlCommand("SELECT [name]=@name FROM [FilmTable]  WHERE[actor]=@actor", sqlConnection);
+                sqlReader = await command.ExecuteReaderAsync();
+                command.Parameters.AddWithValue("actor", textBox16.Text);
+                await command.ExecuteNonQueryAsync();
+           
+                try
+                {
+                    
+                   
+                    
+                    while (await sqlReader.ReadAsync())
+                    {
+                        listBox1.Items.Add(Convert.ToString(sqlReader["name"]));
+
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    if (sqlReader != null)
+                        sqlReader.Close();
+                }
+            }
+
+            else if (string.IsNullOrEmpty(textBox16.Text) || string.IsNullOrWhiteSpace(textBox16.Text))
+            {
+                label35.Visible = true;
+                label35.Text = "Поле (фамилия) не заполненно";
+            }
 
         }
     }
